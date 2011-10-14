@@ -47,8 +47,6 @@ import mimetypes
 import email
 import email.Header
 
-import cgi
-
 _ = gpodder.gettext
 
 def get_header_param(headers, param, header_name):
@@ -582,8 +580,8 @@ class DownloadTask(object):
         self._config = config
 
         # Set names for the downloads list
-        self.markup_name = cgi.escape(self.__episode.title)
-        self.markup_podcast_name = cgi.escape(self.__episode.channel.title)
+        self.markup_name = util.safe_escape(self.__episode.title)
+        self.markup_podcast_name = util.safe_escape(self.__episode.channel.title)
 
         # Create the target filename and save it in the database
         self.filename = self.__episode.local_filename(create=True)
